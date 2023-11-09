@@ -30,28 +30,3 @@ function swimmingRecord(input) {
 
 swimmingRecord(["55555.67", "3017", "5.03"]);
 
-// function shopping(input) {
-//   let budget = Number(input[0]);
-//   let videoCardQty = Number(input[1]);
-//   let processorQty = Number(input[2]);
-//   let ramQty = Number(input[3]);
-
-//   let videoCardUnitPrice = 250;
-//   let videoCardTotalAmount = videoCardUnitPrice * videoCardQty;
-//   let processorPrice = 0.35 * videoCardTotalAmount;
-//   let processorTotalAmount = processorQty * processorPrice;
-//   let ramPrice = 0.1 * videoCardTotalAmount;
-//   let ramTotalAmount = ramQty * ramPrice;
-
-//   let total = ramTotalAmount + processorTotalAmount + videoCardTotalAmount;
-
-//   if (videoCardTotalAmount > processorTotalAmount) {
-//     total = total - total * 0.15;
-//   }
-
-//   if (budget >= total) {
-//     console.log(`You have ${(budget - total).toFixed(2)} leva left!`);
-//   } else {
-//     console.log(`Not enough money! You need ${(total - budget).toFixed(2)} leva more!`);
-//   }
-// }

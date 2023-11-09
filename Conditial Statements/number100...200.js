@@ -17,4 +17,4 @@ function inNumber(input) {
   }
 }
 
-inNumber(["150"]);
+inNumber(["260"]);

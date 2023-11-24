@@ -1,5 +1,3 @@
-/// IN PROGRESS
-
 function reveal(input) {
     let secretMessage = input.shift();
     
@@ -7,7 +5,6 @@ function reveal(input) {
         let line = input.shift();
         let tokens = line.split(':|:');
         let command = tokens[0];
-        
 
         switch (command) {
             case 'InsertSpace': 
@@ -17,32 +14,28 @@ function reveal(input) {
             secretMessage = firstHalf + ' ' + secondHalf;
                 break;
             case 'Reverse': 
-            let initWord = tokens[1];
-                if (secretMessage.includes(initWord) === true) {
-                let wordToBeReversed = initWord.split('').reverse().join(''); // !gnil
-                let newSecretMessage = secretMessage.replace(initWord, wordToBeReversed);
-                console.log(secretMessage);
-            } else {
+            let substring = tokens[1];
+            let firstIdx = secretMessage.indexOf(substring);
+
+            if (firstIdx == -1) {
                 console.log('error');
+                continue
             }
-
-
+            let left = secretMessage.slice(0, firstIdx);
+            let right = secretMessage.slice(firstIdx + substring.length);
+            secretMessage = left + right + substring.split('').reverse().join('');
                 break;
-            case 'ChangeAll': // heVVo dar!gniV
-            let oldValue = tokens[1]; // 'V'
-            let replacement = tokens[2]; // 'l'
+            case 'ChangeAll':
+            let oldValue = tokens[1];
+            let replacement = tokens[2]; 
             let parts = secretMessage.split(oldValue);
-            
-            }
+            secretMessage = parts.join(replacement);
                 break;
-            
+            }
+            console.log(secretMessage);
         }
+        console.log(`You have a new text message: ${secretMessage}`);
     }
-
-    // 2. Reverse
-        // - check if the meesage contains the given string
-        // -- if not, print 'error'
-        // -- if yes, cut it out, reverse it and add it at the end of the messag
 
 
 reveal([
@@ -53,12 +46,12 @@ reveal([
     'Reveal'
     ]);
 console.log('------------');
-// reveal([
-//     'Hiware?uiy',
-//     'ChangeAll:|:i:|:o',
-//     'Reverse:|:?uoy',
-//     'Reverse:|:jd',
-//     'InsertSpace:|:3',
-//     'InsertSpace:|:7',
-//     'Reveal'
-//     ]);
+reveal([
+    'Hiware?uiy',
+    'ChangeAll:|:i:|:o',
+    'Reverse:|:?uoy',
+    'Reverse:|:jd',
+    'InsertSpace:|:3',
+    'InsertSpace:|:7',
+    'Reveal'
+    ]);

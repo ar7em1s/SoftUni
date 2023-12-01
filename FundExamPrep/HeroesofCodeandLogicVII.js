@@ -65,17 +65,16 @@ function game(input) {
         }
         break;
       case "TakeDamage":
-      //take damage
-      // subtract damage from hero HP
-      // check if hero is still alive
-      // - if yes, print damage message
-      // - if no, print death message and remove hero from the party
+        //take damage
+        // subtract damage from hero HP
+        // check if hero is still alive
+        // - if yes, print damage message
+        // - if no, print death message and remove hero from the party
+        break;
     }
-
-    break;
   }
 }
 
 game(["2", "Solmyr 85 120", "Kyrre 99 50", "Heal - Solmyr - 10", "Recharge - Solmyr - 50", "TakeDamage - Kyrre - 66 - Orc", "CastSpell - Kyrre - 15 - ViewEarth", "End"]);
-console.log("----------");
-game(["4", "Adela 90 150", "SirMullich 70 40", "Ivor 1 111", "Recharge - Adela - 100", "CastSpell - Tyris - 1000 - Fireball", "TakeDamage - Tyris - 99 - Fireball", "TakeDamage - Ivor - 3 - Mosquito", "End"]);
+// console.log("----------");
+// game(["4", "Adela 90 150", "SirMullich 70 40", "Ivor 1 111", "Recharge - Adela - 100", "CastSpell - Tyris - 1000 - Fireball", "TakeDamage - Tyris - 99 - Fireball", "TakeDamage - Ivor - 3 - Mosquito", "End"]);

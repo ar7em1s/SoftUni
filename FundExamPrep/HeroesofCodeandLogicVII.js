@@ -70,8 +70,23 @@ function game(input) {
         // check if hero is still alive
         // - if yes, print damage message
         // - if no, print death message and remove hero from the party
+        let dmg = Number(tokens[2]);
+        let attacker = tokens[3];
+        hero.HP -= dmg;
+        if (hero.HP > 0) {
+          console.log(`${name} was hit for ${dmg} HP by ${attacker} and now has ${hero.HP} HP left!`);
+        } else {
+          console.log(`${name} has been killed by ${attacker}!`);
+          delete party[name];
+        }
         break;
     }
+  }
+  for (let name in party) {
+    let hero = party[name];
+    console.log(name);
+    console.log(` HP: ${hero.HP}`);
+    console.log(` MP: ${hero.MP}`);
   }
 }
 

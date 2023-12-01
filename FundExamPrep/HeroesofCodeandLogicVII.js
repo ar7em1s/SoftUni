@@ -59,7 +59,7 @@ function game(input) {
         let spellName = tokens[3];
         if (hero.MP >= MPCost) {
           hero.MP -= MPCost;
-          console.log(`${name} has successfully cast ${spellName} and now has ${MPCost} MP!`);
+          console.log(`${name} has successfully cast ${spellName} and now has ${hero.MP} MP!`);
         } else {
           console.log(`${name} does not have enough MP to cast ${spellName}!`);
         }
@@ -76,5 +76,5 @@ function game(input) {
 }
 
 game(["2", "Solmyr 85 120", "Kyrre 99 50", "Heal - Solmyr - 10", "Recharge - Solmyr - 50", "TakeDamage - Kyrre - 66 - Orc", "CastSpell - Kyrre - 15 - ViewEarth", "End"]);
-// console.log("----------");
-// game(["4", "Adela 90 150", "SirMullich 70 40", "Ivor 1 111", "Recharge - Adela - 100", "CastSpell - Tyris - 1000 - Fireball", "TakeDamage - Tyris - 99 - Fireball", "TakeDamage - Ivor - 3 - Mosquito", "End"]);
+console.log("----------");
+game(["4", "Adela 90 150", "SirMullich 70 40", "Ivor 1 111", "Tyris 94 61", "Recharge - Adela - 100", "CastSpell - Tyris - 1000 - Fireball", "TakeDamage - Tyris - 99 - Fireball", "TakeDamage - Ivor - 3 - Mosquito", "End"]);

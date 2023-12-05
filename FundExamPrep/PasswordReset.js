@@ -1,46 +1,52 @@
-//TakeOdd 
+//50 / 100
 
 function password(input) {
-    let str = input.shift();
-    let newPass = '';
+    let pass = input.shift();
+    let rawPass = '';
 
-    while (input[0] !== 'Done') {
+    while (input[0] != 'Done') {
         let line = input.shift();
         let tokens = line.split(' ');
         let command = tokens[0];
-        
+
+
+
         switch (command) {
             case 'TakeOdd':
-                str = str.split('').filter((_, index) => index % 2 !== 0).join('');
-                newPass += str;
-                console.log(newPass);
-
+                
+                for (let i = 0; i < pass.length; i++) {
+                    if (i % 2 != 0) {
+                        rawPass += pass[i];
+                    }
+                }
+                console.log(rawPass);
             break;
 
             case 'Cut': 
-            let idx = Number(tokens[1]); //2
-            let strLength = Number(tokens[2]); //0
-            let first = newPass.slice(0, idx); //Hel
-            let second = newPass.slice(idx + strLength); //llo
-            newPass = first + second;
-            console.log(newPass);
-            break;
+            let idx = Number(tokens[1]);
+            let len = Number(tokens[2]);
 
-            case 'Substitute':
+            let subStr = rawPass.substring(idx, idx + len);
+            let splStr = rawPass.split(subStr);
+            rawPass = splStr[0] + splStr[1]
+            console.log(rawPass);
+
+            break;
+            case 'Substitute': 
                 let substring = tokens[1];
                 let substitute = tokens[2];
 
-                if (newPass.includes(substring)) {
-                newPass = newPass.split(substring).join(substitute);
-                console.log(newPass);
-                } else {
-                console.log('Nothing to replace!');
-                }
+                if (rawPass.includes(substring)) {
+                    rawPass = rawPass.split(substring).join(substitute);
+                    console.log(rawPass);
 
+                } else {
+                    console.log(`Nothing to replace!`);
+                }
             break;
         }
     }
-    console.log(`Your password is: ${newPass.trim()}`);
+  console.log(`Your password is: ${rawPass}`);
 }
 
 password(["Siiceercaroetavm!:?:ahsott.:i:nstupmomceqr", 
@@ -54,6 +60,8 @@ password(["up8rgoyg3r1atmlmpiunagt!-irs7!1fgulnnnqy",
 "TakeOdd",
 "Cut 18 2",
 "Substitute ! ***",
+"Substitute ? .!.",
+"Done"]);
 "Substitute ? .!.",
 "Done"]);
 

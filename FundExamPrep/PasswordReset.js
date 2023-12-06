@@ -1,44 +1,40 @@
-//50 / 100
-
 function password(input) {
     let pass = input.shift();
-    let rawPass = '';
+    let arrPass = [];
 
     while (input[0] != 'Done') {
         let line = input.shift();
         let tokens = line.split(' ');
         let command = tokens[0];
 
-
-
         switch (command) {
             case 'TakeOdd':
                 
-                for (let i = 0; i < pass.length; i++) {
-                    if (i % 2 != 0) {
-                        rawPass += pass[i];
-                    }
-                }
-                console.log(rawPass);
+            for (let i = 1; i < pass.length; i += 2) {
+                arrPass.push(pass[i])
+              }
+            pass = arrPass.join('')
+            console.log(pass);
             break;
 
             case 'Cut': 
             let idx = Number(tokens[1]);
             let len = Number(tokens[2]);
 
-            let subStr = rawPass.substring(idx, idx + len);
-            let splStr = rawPass.split(subStr);
-            rawPass = splStr[0] + splStr[1]
-            console.log(rawPass);
+            let subStr = pass.substring(idx, idx + len);
+            let substrIndex = pass.indexOf(subStr);
+
+            pass = pass.substring(0, substrIndex) + pass.substring(substrIndex + subStr.length);
+            console.log(pass);
 
             break;
             case 'Substitute': 
                 let substring = tokens[1];
                 let substitute = tokens[2];
 
-                if (rawPass.includes(substring)) {
-                    rawPass = rawPass.split(substring).join(substitute);
-                    console.log(rawPass);
+                if (pass.includes(substring)) {
+                    pass = pass.split(substring).join(substitute);
+                    console.log(pass);
 
                 } else {
                     console.log(`Nothing to replace!`);
@@ -46,7 +42,7 @@ function password(input) {
             break;
         }
     }
-  console.log(`Your password is: ${rawPass}`);
+  console.log(`Your password is: ${pass}`);
 }
 
 password(["Siiceercaroetavm!:?:ahsott.:i:nstupmomceqr", 
@@ -62,6 +58,3 @@ password(["up8rgoyg3r1atmlmpiunagt!-irs7!1fgulnnnqy",
 "Substitute ! ***",
 "Substitute ? .!.",
 "Done"]);
-"Substitute ? .!.",
-"Done"]);
-

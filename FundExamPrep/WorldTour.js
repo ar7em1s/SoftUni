@@ -1,42 +1,55 @@
 function travel(input) {
-  let travelPlan = input.shift();
+    let worldTour = input.shift();
+    
 
-  while (input[0] !== "Travel") {
-    let line = input.shift();
-    let tokens = line.split(":");
-    let command = tokens[0];
+    while (input[0] != "Travel") {
+        let line = input.shift();
+        let tokens = line.split(':');
+        let command = tokens[0];
 
-    switch (command) {
-      case "Add Stop":
-        let idx = Number(tokens[1]);
-        let newStop = tokens[2];
-        let firstHalf = travelPlan.slice(0, idx);
-        let secondHalf = travelPlan.slice(idx);
-        travelPlan = firstHalf + newStop + secondHalf;
-        console.log(travelPlan);
-        break;
+        switch (command) {
+            case 'Add Stop': 
+            let idx = Number(tokens[1]);
+            let str = tokens[2];
 
-      case "Remove Stop":
-        let startIdx = Number(tokens[1]);
-        let endIdx = Number(tokens[2]);
-        let first = travelPlan.slice(0, startIdx);
-        let second = travelPlan.slice(endIdx + 1);
-        travelPlan = first + second;
-        console.log(travelPlan);
-        break;
+            if (idx >= 0 && idx <= worldTour.length) { // added IF to be 0-index inclusive
+                let first = worldTour.slice(0, idx);
+                let second = worldTour.slice(idx);
+                worldTour = first + str + second;
+                console.log(worldTour);
+            } else {
+                console.log(worldTour);
+            }
+            break;
 
-      case "Switch":
-        let oldValue = tokens[1];
-        let replacement = tokens[2];
+            case 'Remove Stop': 
+            let startIdx = Number(tokens[1]);
+            let endIdx = Number(tokens[2]);
 
-        if (stop.includes(oldValue)) {
-          stop = stop.replace(oldValue, replacement);
+            if (startIdx >= 0 && startIdx < worldTour.length && // ^^^ ditto
+                endIdx >= 0 && endIdx < worldTour.length) {
+              let firstHalf = worldTour.slice(0, startIdx);
+              let secondHalf = worldTour.slice(endIdx + 1);
+
+              worldTour = firstHalf + secondHalf;
+              console.log(worldTour);
+            } else {
+                console.log(worldTour);
+            }
+            break;
+
+            case 'Switch': 
+            let oldStr = tokens[1];
+            let replacement = tokens[2];
+            if (worldTour.includes(oldStr)) {
+            worldTour = worldTour.split(oldStr).join(replacement);
+            console.log(worldTour);
+        } else {
+            console.log(worldTour);
         }
-        // let parts = travelPlan.split(oldValue);
-        // travelPlan = parts.join(replacement);
-        console.log(travelPlan);
-        break;
+            break;
+
+        }
     }
-  }
-  console.log(`Ready for world tour! Planned stops: ${travelPlan}`);
+    console.log(`Ready for world tour! Planned stops: ${worldTour}`);
 }

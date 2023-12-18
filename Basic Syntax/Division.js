@@ -6,7 +6,7 @@ If the number is not divisible by any of the given numbers print: "Not divisible
 Otherwise, print: "The number is divisible by {number}". */
 
 function division(num) {
-    if (num % 10 == 0) {
+    if (num % 10 == 0) { // starting from the biggest number so the biggest divisible is printed
       console.log("The number is divisible by 10");
     } else if (num % 7 == 0) {
       console.log("The number is divisible by 7");

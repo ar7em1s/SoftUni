@@ -4,10 +4,10 @@ The input comes as two number parameters. Print the result like the examples bel
 Sum: 45 */
 
 function printSum(num1, num2) {
-    let str = "";
+    let str = ""; //easier resolution with an array
     let sum = 0;
     for (let i = num1; i <= num2; i++) {
-        str += i + " "; // got triangle if printed here
+        str += i + " "; // get num triangle if printed here
         sum += i;
     }
     console.log(str);

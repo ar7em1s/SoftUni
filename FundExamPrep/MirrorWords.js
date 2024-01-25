@@ -14,6 +14,7 @@ function mirror([input]) {
     count++;
     let first = match[2];
     let second = match[3];
+    console.log(first, second);
 
     if (first == second.split("").reverse().join("")) {
       result.push(`${first} <=> ${second}`);

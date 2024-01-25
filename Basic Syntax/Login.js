@@ -11,7 +11,7 @@ function login(input) {
     for (let i = 1; i < input.length; i++) {
         if (i >= 4 && user !== input[i].split("").reverse().join("")) {
             console.log(`User ${user} blocked!`);
-            return;
+            break;
         }
         if (user === input[i].split("").reverse().join("")) {
             console.log(`User ${user} logged in.`);

@@ -23,10 +23,10 @@ class FashionRetailInventory{
     }
 
     sendProduct(productName, size) {
-        const productIndex = this.productStock.findIndex(p => p.productName === productName && p.size === size);
+        const data = this.productStock.find(p => p.productName === productName && p.size === size);
 
-        if (productIndex !== -1) {
-            this.productStock.splice(productIndex, 1);
+        if (data) {
+            this.productStock.splice(data, 1);
             return `The product ${productName}, size ${size} was successfully removed from the inventory`;
         } else {
             throw new Error(`The product ${productName}, size ${size} is not in the inventory`);
@@ -57,3 +57,33 @@ class FashionRetailInventory{
         }
     }
 }
+
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+//   console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("Sweather", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+// console.log('-----------------')
+
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+//   console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.sendProduct("T-Shirt", "M"));
+//   console.log(storeHouse.sendProduct("Sweater", "M"));
+// console.log('-----------------')
+
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+//   console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.findProductsBySize("M"));
+//   console.log(storeHouse.findProductsBySize("XL"));
+// console.log('-----------------')
+
+// const storeHouse = new FashionRetailInventory("East", "Milano");
+//   console.log(storeHouse.addProduct("Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("T-Shirt", "M", 10, 25.0));
+//   console.log(storeHouse.addProduct("Shirt", "L", 5, 30.0));
+//   console.log(storeHouse.addProduct("Shoes", "9", 8, 50.0));
+//   console.log(storeHouse.sendProduct("Shoes", "9", 8, 50.0));
+//   console.log(storeHouse.listProducts());
+// console.log('-----------------')

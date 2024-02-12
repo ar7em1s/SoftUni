@@ -1,85 +1,81 @@
+// 91/100???
 class WineSelection {
-  constructor(space) {
-    this.space = Number(space);
-    this.wines = [];
-    this.bill = 0;
-    this.bottleCount = 0;
-  }
-
-  reserveABottle(wineName, wineType, price) {
-    this.bottleCount++;
-    this.price = Number(price);
-
-    if (this.space < this.bottleCount) {
-      throw new Error("Not enough space in the cellar.");
-    } else {
-      this.wines.push({
-        wineName,
-        wineType,
-        price,
-        paid: false,
-      });
+    constructor(space) {
+      this.space = Number(space);
+      this.wines = [];
+      this.bill = 0;
+      this.bottleCount = 0;
     }
-    return `You reserved a bottle of ${wineName} ${wineType} wine.`;
-  }
-
-  payWineBottle(wineName, price) {
-    price = Number(price);
-    const data = this.wines.find((el) => el.wineName == wineName);
-
-    if (!data) {
-      throw new Error(`${wineName} is not in the cellar.`);
-    }
-
-    if (data && !data.paid) {
-      this.bill += price;
-      data.paid = true;
-      return `You bought a ${wineName} for a ${price}$.`;
-    }
-
-    if (data.paid) {
-      throw new Error(`${wineName} has already been paid.`);
-    }
-  }
-
-  openBottle(wineName) {
-    const data = this.wines.find((el) => el.wineName == wineName);
-
-    if (!this.wines.includes(data)) {
-      throw new Error("The wine, you're looking for, is not found.");
-    }
-
-    if (data.paid) {
-      this.bottleCount--;
-      return `You drank a bottle of ${wineName}.`;
-    } else {
-      throw new Error(`${wineName} need to be paid before open the bottle`);
-    }
-  }
-
-  cellarRevision(wineType) {
-    let emptySlots = this.space - this.bottleCount;
-    const data = this.wines.find((el) => el.wineType == wineType);
-
-    if (wineType == undefined) {
-      this.sortingFunc(this.wines, wineName);
-      return `You have space for ${emptySlots} bottles more.\nYou paid ${this.bill}$ for the wine.`;
-    }
-
-    if (wineType) {
-      if (data.paid) {
-        return `${data.wineName} > ${wineType} - Has Paid.`;
+  
+    reserveABottle(wineName, wineType, price) {
+      this.bottleCount++;
+      this.price = Number(price);
+  
+      if (this.space < this.bottleCount) {
+        throw new Error("Not enough space in the cellar.");
       } else {
-        return `${data.wineName} > ${wineType} - Not Paid.`;
+        this.wines.push({
+          wineName,
+          wineType,
+          price,
+          paid: false,
+        });
       }
-    } else {
-      return `There is no ${wineType} in the cellar.`;
+      return `You reserved a bottle of ${wineName} ${wineType} wine.`;
     }
-  }
-
-  sortingFunc(array, crit) {
-    array.sort((a, b) => a[crit].localeCompare(b[crit]));
-    return array;
+  
+    payWineBottle(wineName, price) {
+      price = Number(price);
+      const data = this.wines.find((el) => el.wineName == wineName);
+  
+      if (!data) {
+        throw new Error(`${wineName} is not in the cellar.`);
+      }
+  
+      if (data && !data.paid) {
+        this.bill += price;
+        data.paid = true;
+        return `You bought a ${wineName} for a ${price}$.`;
+      }
+  
+      if (data.paid) {
+        throw new Error(`${wineName} has already been paid.`);
+      }
+    }
+  
+    openBottle(wineName) {
+      const data = this.wines.find((el) => el.wineName == wineName);
+  
+      if (!this.wines.includes(data)) {
+        throw new Error("The wine, you're looking for, is not found.");
+      }
+  
+      if (data.paid) {
+        this.bottleCount--;
+        return `You drank a bottle of ${wineName}.`;
+      } else {
+        throw new Error(`${wineName} need to be paid before open the bottle.`);
+      }
+    }
+  
+    cellarRevision(wineType) {
+      let emptySlots = this.space - this.bottleCount;
+      const data = this.wines.find((el) => el.wineType == wineType);
+      let sortedWines = [...this.wines];
+  
+      if (!wineType) {
+        sortedWines.sort((a, b) => a.wineName.localeCompare(b.wineName));
+        let revisionResult = `You have space for ${emptySlots} bottles more.\nYou paid ${this.bill}$ for the wine.\n`;
+        return revisionResult += sortedWines.map(wine => `${wine.wineName} > ${wine.wineType} - ${wine.paid ? 'Has Paid' : 'Not Paid'}.`).join('\n');
+      }
+  
+      if (wineType) {
+        if (sortedWines.includes(data)) {
+          return `${data.wineName} > ${data.wineType} - ${data.paid ? 'Has Paid' : 'Not Paid'}.`; 
+      } else {
+          return `There is no ${wineType} in the cellar.`;;
+      }
+    }
   }
 }
 

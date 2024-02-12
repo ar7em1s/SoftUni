@@ -1,6 +1,6 @@
 //100% sure there is a better way
 
-function cookingNumbers(number, a1, a2, a3, a4, a5) {
+export function cookingNumbers(number, a1, a2, a3, a4, a5) {
   let num = parseInt(number);
   let actions = [a1, a2, a3, a4, a5];
 

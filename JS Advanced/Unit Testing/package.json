@@ -1,0 +1,21 @@
+{
+  "name": "jsbasics---softuni",
+  "version": "1.0.0",
+  "main": "playground.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ar7em1s/SoftUni.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ar7em1s/SoftUni/issues"
+  },
+  "homepage": "https://github.com/ar7em1s/SoftUni#readme",
+  "description": ""
+}

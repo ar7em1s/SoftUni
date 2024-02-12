@@ -52,6 +52,7 @@ class WineSelection {
   
       if (data.paid) {
         this.bottleCount--;
+        this.wines = this.wines.filter((el) => el.wineName !== wineName);
         return `You drank a bottle of ${wineName}.`;
       } else {
         throw new Error(`${wineName} need to be paid before open the bottle.`);

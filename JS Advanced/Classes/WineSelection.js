@@ -1,4 +1,4 @@
-// 91/100???
+// 91/100 ?? 
 class WineSelection {
     constructor(space) {
       this.space = Number(space);
@@ -8,9 +8,7 @@ class WineSelection {
     }
   
     reserveABottle(wineName, wineType, price) {
-      this.price = Number(price);
-  
-      if (this.space <= this.bottleCount) {
+    if (this.space <= this.bottleCount) {
         throw new Error("Not enough space in the cellar.");
       } else {
         this.bottleCount++;
@@ -46,7 +44,7 @@ class WineSelection {
     openBottle(wineName) {
       const data = this.wines.find((el) => el.wineName == wineName);
   
-      if (data == undefined) {
+      if (!data) {
         throw new Error("The wine, you're looking for, is not found.");
       }
   

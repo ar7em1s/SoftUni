@@ -1,80 +1,78 @@
-// 91/100 ?? 
+// 91/100 ??
 class WineSelection {
-    constructor(space) {
-      this.space = Number(space);
-      this.wines = [];
-      this.bill = 0;
-      this.bottleCount = 0;
-    }
-  
-    reserveABottle(wineName, wineType, price) {
+  constructor(space) {
+    this.space = Number(space);
+    this.wines = [];
+    this.bill = 0;
+    this.bottleCount = 0;
+  }
+
+  reserveABottle(wineName, wineType, price) {
     if (this.space <= this.bottleCount) {
-        throw new Error("Not enough space in the cellar.");
-      } else {
-        this.bottleCount++;
-        this.wines.push({
-          wineName,
-          wineType,
-          price,
-          paid: false,
-        });
-      }
-      return `You reserved a bottle of ${wineName} ${wineType} wine.`;
+      throw new Error("Not enough space in the cellar.");
+    } else {
+      this.bottleCount++;
+      this.wines.push({
+        wineName,
+        wineType,
+        price,
+        paid: false,
+      });
     }
-  
-    payWineBottle(wineName, price) {
-      price = Number(price);
-      const data = this.wines.find((el) => el.wineName == wineName);
-  
-      if (!data) {
-        throw new Error(`${wineName} is not in the cellar.`);
-      }
-  
-      if (data && !data.paid) {
-        this.bill += price;
-        data.paid = true;
-        return `You bought a ${wineName} for a ${price}$.`;
-      }
-  
-      if (data.paid) {
-        throw new Error(`${wineName} has already been paid.`);
-      }
+    return `You reserved a bottle of ${wineName} ${wineType} wine.`;
+  }
+
+  payWineBottle(wineName, price) {
+    price = Number(price);
+    const data = this.wines.find((el) => el.wineName == wineName);
+
+    if (!data) {
+      throw new Error(`${wineName} is not in the cellar.`);
     }
-  
-    openBottle(wineName) {
-      const data = this.wines.find((el) => el.wineName == wineName);
-  
-      if (!data) {
-        throw new Error("The wine, you're looking for, is not found.");
-      }
-  
-      if (data.paid) {
-        this.bottleCount--;
-        this.wines = this.wines.filter((el) => el.wineName !== wineName);
-        return `You drank a bottle of ${wineName}.`;
-      } else {
-        throw new Error(`${wineName} need to be paid before open the bottle.`);
-      }
+
+    if (data && !data.paid) {
+      this.bill += price;
+      data.paid = true;
+      return `You bought a ${wineName} for a ${price}$.`;
     }
-  
-    cellarRevision(wineType) {
-        let emptySlots = this.space - this.bottleCount;
-        let winesByType = this.wines.filter((el) => el.wineType === wineType);
-        let sortedWines = [...this.wines];
-        
-        if (!wineType) {
-          sortedWines.sort((a, b) => a.wineName.localeCompare(b.wineName));
-          let revisionResult = `You have space for ${emptySlots} bottles more.\nYou paid ${this.bill}$ for the wine.\n`;
-          return revisionResult += sortedWines
-            .map(wine => `${wine.wineName} > ${wine.wineType} - ${wine.paid ? 'Has Paid' : 'Not Paid'}.`)
-            .join('\n');
-        } else if (winesByType.length === 0) {
-          return `There is no ${wineType} in the cellar.`;
-        } else {
-          return winesByType.map(wine => `${wine.wineName} > ${wine.wineType} - ${wine.paid ? 'Has Paid' : 'Not Paid'}.`).join('\n');
-        }
+
+    if (data.paid) {
+      throw new Error(`${wineName} has already been paid.`);
     }
   }
+
+  openBottle(wineName) {
+    const data = this.wines.find((el) => el.wineName == wineName);
+
+    if (!data) {
+      throw new Error("The wine, you're looking for, is not found.");
+    }
+
+    if (data.paid) {
+      this.bottleCount--;
+      this.wines = this.wines.filter((el) => el.wineName !== wineName);
+      return `You drank a bottle of ${wineName}.`;
+    } else {
+      throw new Error(`${wineName} need to be paid before open the bottle.`);
+    }
+  }
+
+  cellarRevision(wineType) {
+    let emptySlots = this.space - this.bottleCount;
+    let winesByType = this.wines.filter((el) => el.wineType === wineType);
+    let sortedWines = [...this.wines];
+
+    if (!wineType) {
+      sortedWines.sort((a, b) => a.wineName.localeCompare(b.wineName));
+      let revisionResult = `You have space for ${emptySlots} bottles more.\nYou paid ${this.bill}$ for the wine.\n`;
+      return (revisionResult += sortedWines.map((wine) => `${wine.wineName} > ${wine.wineType} - ${wine.paid ? "Has Paid" : "Not Paid"}.`).join("\n"));
+    } else if (winesByType.length === 0) {
+      return `There is no ${wineType} in the cellar.`;
+    } else {
+      return winesByType.map((wine) => `${wine.wineName} > ${wine.wineType} - ${wine.paid ? "Has Paid" : "Not Paid"}.`).join("\n");
+    }
+  }
+}
 
 // const selection1 = new WineSelection(5);
 // console.log(selection1.reserveABottle("Sauvignon Blanc Marlborough", "White", 50));
